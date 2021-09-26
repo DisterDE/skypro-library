@@ -16,14 +16,14 @@ public class Bootstrap {
     }
 
     public void addAuthors() {
-        authorService.addAuthor("Lev", "Tolstoy");
-        authorService.addAuthor("Stephen", "King");
-        authorService.addAuthor("William", "Shakespeare");
+        authorService.add("Lev", "Tolstoy");
+        authorService.add("Stephen", "King");
+        authorService.add("William", "Shakespeare");
     }
 
     public void addBooks() {
-        bookService.addBook("War and Peace", "Lev", "Tolstoy", 1867);
-        bookService.addBook("The Stand", "Stephen", "King", 1978);
-        bookService.addBook("Romeo and Juliet", "William", "Shakespeare", 1597);
+        bookService.add("War and Peace", "Lev", "Tolstoy", 1867);
+        bookService.add("The Stand", "Stephen", "King", 1978);
+        bookService.add("Romeo and Juliet", "William", "Shakespeare", 1597);
     }
 }

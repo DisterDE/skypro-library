@@ -21,20 +21,20 @@ public class AuthorController {
 
     // http://localhost:8080/library/author/add?firstName=Sergey&lastName=Esenin
     @GetMapping("add")
-    public Author addAuthor(@RequestParam String firstName, @RequestParam String lastName) {
-        return authorService.addAuthor(firstName, lastName);
+    public Author add(@RequestParam String firstName, @RequestParam String lastName) {
+        return authorService.add(firstName, lastName);
     }
 
     // http://localhost:8080/library/author/all
     @GetMapping("all")
-    public Iterable<Author> getAll() {
+    public Iterable<Author> findAll() {
         return authorService.findAll();
     }
 
     // http://localhost:8080/library/author/find?lastName=King
     // http://localhost:8080/library/author/find?firstName=Stephen&lastName=King
     @GetMapping("find")
-    public Iterable<Author> findByFirstNameAndLastName(
+    public Iterable<Author> find(
             @RequestParam(required = false) String firstName,
             @RequestParam String lastName
     ) {

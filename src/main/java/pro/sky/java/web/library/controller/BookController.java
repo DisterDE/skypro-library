@@ -21,31 +21,34 @@ public class BookController {
 
     // http://localhost:8080/library/book/add?name=WarAndPeace4&authorFirstName=Lev&authorLastName=Tolstoy&publishingYear=1870
     @GetMapping("add")
-    public Book addBook(
+    public Book add(
             @RequestParam String name,
             @RequestParam String authorFirstName,
             @RequestParam String authorLastName,
             @RequestParam int publishingYear
     ) {
-        return service.addBook(name, authorFirstName, authorLastName, publishingYear);
+        return service.add(name, authorFirstName, authorLastName, publishingYear);
     }
 
     // http://localhost:8080/library/book/remove?bookName=WarAndPeace
     @GetMapping("remove")
-    public boolean removeBook(@RequestParam String bookName) {
+    public boolean delete(@RequestParam String bookName) {
         return service.delete(bookName);
     }
 
     // http://localhost:8080/library/book/all
     @GetMapping("all")
-    public Iterable<Book> getAllBooks() {
+    public Iterable<Book> findAll() {
         return service.findAll();
     }
 
     // http://localhost:8080/library/book/find?publishingYear=1978
     // http://localhost:8080/library/book/find?bookName=Romeo%20and%20Juliet
     @GetMapping("find")
-    public Iterable<Book> find(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer publishingYear) {
+    public Iterable<Book> find(
+            @RequestParam(required = false) String bookName,
+            @RequestParam(required = false) Integer publishingYear
+    ) {
         if (bookName != null) {
             return Set.of(service.findByName(bookName));
         }

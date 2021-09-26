@@ -16,11 +16,11 @@ public class BookService {
         this.authorService = authorService;
     }
 
-    public Book addBook(String bookName, String authorFirstName, String authorLastName, int publishingYear) {
+    public Book add(String bookName, String authorFirstName, String authorLastName, int publishingYear) {
         if (existsByName(bookName)) {
             return repository.findByName(bookName);
         }
-        Author author = authorService.addAuthor(authorFirstName, authorLastName);
+        Author author = authorService.add(authorFirstName, authorLastName);
         Book book = new Book(bookName, publishingYear, author);
         return repository.save(book);
     }

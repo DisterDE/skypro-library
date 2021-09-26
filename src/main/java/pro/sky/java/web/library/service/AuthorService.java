@@ -13,7 +13,7 @@ public class AuthorService {
         this.repository = repository;
     }
 
-    public Author addAuthor(String firstName, String lastName) {
+    public Author add(String firstName, String lastName) {
         if (existsByFirstNameAndLastName(firstName, lastName)) {
             return findByFirstNameAndLastName(firstName, lastName);
         }
