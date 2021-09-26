@@ -25,15 +25,15 @@ public class BookService {
         return repository.save(book);
     }
 
-    public boolean removeBook(String bookName) {
+    public boolean delete(String bookName) {
         return repository.deleteByName(bookName);
     }
 
-    public Iterable<Book> getAll() {
+    public Iterable<Book> findAll() {
         return repository.findAll();
     }
 
-    public Iterable<Book> getAllByPublishingYear(int publishingYear) {
+    public Iterable<Book> findAllByPublishingYear(int publishingYear) {
         return repository.findByPublishingYear(publishingYear);
     }
 

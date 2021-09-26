@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pro.sky.java.web.library.entity.Book;
 import pro.sky.java.web.library.service.BookService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("book")
 public class BookController {
@@ -31,18 +33,25 @@ public class BookController {
     // http://localhost:8080/library/book/remove?bookName=WarAndPeace
     @GetMapping("remove")
     public boolean removeBook(@RequestParam String bookName) {
-        return service.removeBook(bookName);
+        return service.delete(bookName);
     }
 
     // http://localhost:8080/library/book/all
     @GetMapping("all")
     public Iterable<Book> getAllBooks() {
-        return service.getAll();
+        return service.findAll();
     }
 
+    // http://localhost:8080/library/book/find?publishingYear=1978
     // http://localhost:8080/library/book/find?bookName=Romeo%20and%20Juliet
     @GetMapping("find")
-    public Book findByName(@RequestParam String bookName) {
-        return service.findByName(bookName);
+    public Iterable<Book> find(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer publishingYear) {
+        if (bookName != null) {
+            return Set.of(service.findByName(bookName));
+        }
+        if (publishingYear != null) {
+            return service.findAllByPublishingYear(publishingYear);
+        }
+        return null;
     }
 }
