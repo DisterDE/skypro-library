@@ -12,9 +12,11 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     @Length(min = 2, message = "Too short first name")
     private String firstName;
 
+    @Column(nullable = false)
     @Length(min = 2, message = "Too short last name")
     private String lastName;
 

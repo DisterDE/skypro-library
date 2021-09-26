@@ -15,6 +15,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     @Length(min = 2, message = "Too short book name")
     private String name;
 
