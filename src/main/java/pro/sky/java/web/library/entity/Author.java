@@ -1,14 +1,40 @@
-package pro.sky.java.web.library.domain;
+package pro.sky.java.web.library.entity;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "authors")
 public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
+    @Length(min = 2, message = "Too short first name")
     private String firstName;
+
+    @Column(name = "last_name")
+    @Length(min = 2, message = "Too short last name")
     private String lastName;
+
+    // Hibernate required
+    public Author() {
+    }
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -32,12 +58,12 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName);
+        return id.equals(author.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName);
+        return Objects.hash(id);
     }
 
     @Override
